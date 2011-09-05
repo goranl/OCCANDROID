@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_height="fill_parent" android:layout_width="fill_parent" android:weightSum="1" android:orientation="vertical">
+  <LinearLayout
+      android:id="@+id/TorusData"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content" android:orientation="vertical">
+      <TextView android:text="Input data for Torus:"
+        android:textSize="15sp" android:layout_width="fill_parent" android:layout_height="wrap_content"/>
+      <EditText android:layout_height="wrap_content" android:id="@+id/value1"
+        android:hint="Value R" android:layout_width="fill_parent" android:inputType="number"></EditText>
+      <EditText android:layout_height="wrap_content" android:id="@+id/value2"
+        android:hint="Value r" android:layout_width="fill_parent" android:inputType="number"></EditText>
+  </LinearLayout>
+  <TextView android:layout_height="wrap_content" android:text="$result"
+    android:textSize="14sp" android:id="@+id/result" android:layout_width="fill_parent" android:layout_weight="0.32"></TextView>
+  <Button android:id="@+id/buttonCalc"
+    android:text="Calculate Volume" android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
+</LinearLayout>
