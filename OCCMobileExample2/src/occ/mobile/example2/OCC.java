@@ -5,7 +5,6 @@ import android.util.Log;
 /**
  * 	@author Goran Lukic
  * 	@since  04.09.2011
- *  @see    http://github.com/goranl
  */
 
 public class OCC {
