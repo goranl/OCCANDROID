@@ -1,0 +1,62 @@
+#################################################################################################################
+#  How to run OpenCASCADE on Android 
+# 
+#  Open CASCADE Technology is a software development platform freely available in open source. 
+#  It includes components for 3D surface and solid modeling, visualization, 
+#  data exchange and rapid application development.
+#  Open CASCADE Technology can be best applied in development of numerical simulation software,
+#  including CAD/CAM/CAE, AEC and GIS, as well as PDM applications.
+#  The Technology exists from the mid 1990-s and has already been used
+#  by numerous commercial clients belonging to different domains − from software edition to heavy industry.
+#  
+#  The platform is provided by the Company bearing the same name − OPEN CASCADE SAS 
+#  For its clients the Company offers custom development and technical support services.
+#  For more information on the Company please visit www.opencascade.com
+#  
+#  ***This effort is in no way connected to OpenCASCADE Company*** 
+#
+##################################################################################################################
+
+You'll need to have the standard developer's tools on Linux.
+(including Java Development Kit)
+
+$ update-alternatives --config java  (* 3 /usr/lib/jvm/java-6-sun/jre/bin/java 63 manual mode)
+$ update-alternatives --config javac (* 3 /usr/lib/jvm/java-6-sun/bin/javac 63 manual mode)
+$ update-alternatives --config javah (* 2 /usr/lib/jvm/java-6-sun/bin/javah 63 manual mode)
+
+   $HOME/OCCANDROID - "root" directory.
+
+1. Download/Install Eclipse with C/C++ support 
+   [ http://www.eclipse.org/downloads ]
+
+2. Download/Install Android(ADT) plugin for Eclipse
+   [ http://developer.android.com/sdk/eclipse-adt.html ]
+
+3. Download/Install latest SDK(Software Development Kit)
+   [ http://developer.android.com/sdk/index.html ]
+
+4. Download/Install latest NDK(Native Development Kit)
+   [ http://developer.android.com/sdk/ndk/index.html ]
+
+5. Download/Install Apache Ant
+   [ http://ant.apache.org ]
+
+6. Download allready pre-compiled shared librarys for Android
+   [ https://github.com/goranl/OCCANDROID/archives/master ]
+
+7.  cd $HOME
+8.  mkdir -p $HOME/OCCANDROID/Examples
+9.  cd $HOME/OCCANDROID/Examples
+10. git clone git://github.com/goranl/OCCANDROID.git
+
+11. Create Environment variables
+    export OCCANDROID=$HOME/OCCANDROID
+    export PATH=$PATH:$HOME/OCCANDROID/android-ndk-r6b
+    export PATH=$PATH:$HOME/OCCANDROID/android-sdk-linux_x86/tools
+    export PATH=$PATH:$HOME/OCCANDROID/android-sdk-linux_x86/platform-tools
+    export ANDROID_SDK=$HOME/OCCANDROID/android-sdk-linux_x86
+    export ANDROID_NDK=$HOME/OCCANDROID/android-ndk-r6b
+    export ANDROID_ARM_4=$HOME/OCCANDROID/android-ndk-r6b/platforms/android-4/arch-arm/usr
+
+12. cd $OCCANDROID/Examples/OCCMobileExample*
+    Follow readme instructions
