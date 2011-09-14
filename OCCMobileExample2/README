@@ -1,44 +1,28 @@
-##################################################################################
+############################################################################################
 # COMPILE from shell
-# OCC *.so inside /jni
-##################################################################################
-arch@bt:~/OCCANDROID/OCCMobileExample2$ cd jni
-arch@bt:~/OCCANDROID/OCCMobileExample2/src/occ/mobile/example2$ javac OCC.java
-cd .. cd .. cd ..
-arch@bt:~/OCCANDROID/OCCMobileExample2/src$ javah -jni occ.mobile.example2.OCC
-arch@bt:~/OCCANDROID/OCCMobileExample2/src$ mv occ_mobile_example2_OCC.h ../jni/
-arch@bt:~/OCCANDROID/OCCMobileExample2/src$ /home/arch/android-ndk-r5c/ndk-build APP=../../Application.mk 
- 
- --output--
-Compile thumb  : occ_native <= occ_native.cpp
-SharedLibrary  : libocc_native.so
-Install        : libocc_native.so => libs/armeabi/libocc_native.so
-----------------------------------------------------------------------------------
-###########################################################################
-# COMPILE with ant
-# OCC *.so inside /jni
-###########################################################################
-# make sure your simulator is already running or...
-# real device is connected with your machine via USB and "USB debugging"
-# and "Allow mock locations" is on
---------------------------------------------------------------------------
-arch@bt: cd ~/OCCANDROID/OCCMobileExample2
-arch@bt: adb devices
-arch@bt: ant install
-----------------------------------------------------------------------------
-############################################################################
+# Don't forget to put *.so inside /jni
+# check LOCAL_CFLAGS inside Android.mk
+############################################################################################
+:~/OCCANDROID/Examples/OCCANDROID/OCCMobileExample2/src/occ/mobile/example2$  javac OCC.java
+:~/OCCANDROID/Examples/OCCANDROID/OCCMobileExample2/src/occ/mobile/example2$ cd ../../../
+:~/OCCANDROID/OCCMobileExample2/src$ javah -jni occ.mobile.example2.OCC
+:~/OCCANDROID/OCCMobileExample2/src$ mv occ_mobile_example2_OCC.h ../jni/
+:~/OCCANDROID/OCCMobileExample2/src$ ndk-build APP=../../Application.mk 
+:~/OCCANDROID/OCCMobileExample2/src$ cd ..
+:~/OCCANDROID/OCCMobileExample2/src$ adb devices
+:~/OCCANDROID/OCCMobileExample2/src$ ant install
+
+
+############################################################################################
 # COMPILE with Eclipse
-# OCC *.so inside /jni 
-############################################################################
+# Don't forget to put *.so inside /jni
+# check LOCAL_CFLAGS inside Android.mk
+############################################################################################
 # If you have any problems, configure Eclipse to automatically 
-# rebuild your project when editing native code
+# rebuild your project when editing native code.
 #
 # ... and set Target to "Manual" under Project->Properties->Run/Debug Settings
 # Launch configurations for "..."
-----------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------
 Click on Run or Ctrl+F11 :)
-----------------------------------------------------------------------------
-
-
-
-
+--------------------------------------------------------------------------------------------
