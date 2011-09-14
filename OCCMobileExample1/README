@@ -1,27 +1,26 @@
 ###########################################################################
 # COMPILE with ant
 ###########################################################################
-# make sure your simulator is already running or...
-# real device is connected with your machine via USB and "USB debugging"
-# and "Allow mock locations" is on
+# make sure your real device is is connected with your  
+# machine via USB and "USB debugging"
+# and "Allow mock locations" is on.
+# Don't use both (mobile phone and emulator) at the same time...!  
 --------------------------------------------------------------------------
-arch@bt: cd /occ-android-libshared
-arch@bt: adb devices
-arch@bt: adb push helloG /data/local/tmp
-arch@bt: ant install
+$ adb devices
+$ adb push ../../../occ-android-libshared/helloG /data/local/tmp
+$ ant install
 ----------------------------------------------------------------------------
 ############################################################################
 # COMPILE with Eclipse
 ############################################################################
 # If you have any problems, configure Eclipse to automatically 
-# rebuild your project when editing native code
+# rebuild your project when editing native code.
 #
 # ... and set Target to "Manual" under Project->Properties->Run/Debug Settings
 # Launch configurations for "..."
 ----------------------------------------------------------------------------
 Click on Run or Ctrl+F11 :)
 ----------------------------------------------------------------------------
-
 
 
 
