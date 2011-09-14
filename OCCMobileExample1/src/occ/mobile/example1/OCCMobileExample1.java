@@ -15,7 +15,6 @@ import android.widget.TextView;
 /**
  * 	@author gL
  * 	@since  04.09.2011
- *  @see    http://github.com/goranl
  */
 
 public class OCCMobileExample1 extends Activity {	
@@ -26,39 +25,39 @@ public class OCCMobileExample1 extends Activity {
         
         Button callOCC = (Button) findViewById(R.id.callOCC);
         callOCC.setOnClickListener(new OnClickListener() {
-        	TextView shellOutput = (TextView) findViewById(R.id.shellOutput);
+        TextView shellOutput = (TextView) findViewById(R.id.shellOutput);
         	   
         public void onClick(View v) {
         	shellOutput.setText(ReadShellOutput());
-        	//finish();
         }  
       }); 
     }
     
     private String ReadShellOutput() {
-    	ProcessBuilder shell;
-    	String result="", s="";  
+          ProcessBuilder shell;
+    	    String result="", s="";  
      try {	 
     	   /*
     	    *  Make sure helloG exist in /data/local/tmp
     	    * `adb push helloG /data/local/tmp`
     	    */		  
     	    String[] args = { "./data/local/tmp/helloG" };
-    	 	shell = new ProcessBuilder(args);
+    	 	  shell = new ProcessBuilder(args);
       
-    	 	Process proc = shell.start();
-    	 	InputStream is = proc.getInputStream();
-    	 	InputStreamReader isr = new InputStreamReader(is);
-    	 	BufferedReader br = new BufferedReader(isr);
+    	 	  Process proc = shell.start();
+    	 	  InputStream is = proc.getInputStream();
+    	 	  InputStreamReader isr = new InputStreamReader(is);
+    	 	  BufferedReader br = new BufferedReader(isr);
 
-    	 	while ((s = br.readLine()) != null) {
-    	 		StringBuffer sb = new StringBuffer(s);
-    	 		result += new String(sb+"\n");
-     }
-    	br.close();
-    	isr.close();
-    	is.close();
-    	proc.destroy();
+    	 	  while ((s = br.readLine()) != null) {
+    	 		  StringBuffer sb = new StringBuffer(s);
+    	 		  result += new String(sb+"\n");
+          }
+          
+    	    br.close();
+        	isr.close();
+    	    is.close();
+    	    proc.destroy();
      } 
      catch(IOException ex) {	 
     	 	ex.printStackTrace();
