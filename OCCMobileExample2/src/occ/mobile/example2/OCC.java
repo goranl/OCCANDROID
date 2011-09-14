@@ -11,7 +11,7 @@ public class OCC {
 
   static 
   {
-	 try {
+   try {
         System.loadLibrary("TKernel");
         System.loadLibrary("TKMath");
         System.loadLibrary("TKG2d");
@@ -22,11 +22,10 @@ public class OCC {
         System.loadLibrary("TKTopAlgo");
         System.loadLibrary("TKPrim");
         System.loadLibrary("occ_native");
-	  	  
-	  } catch (UnsatisfiedLinkError use) {
         
-        Log.e("OCC", "WARNING:WARNING:WARNING: Could not load librarys");
-		}
+   } catch (UnsatisfiedLinkError use) {
+   	    Log.e("OCC", "WARNING:WARNING:WARNING: Could not load librarys");
+     }
   }
 
   public native double result( double v1, double v2 );
