@@ -47,13 +47,10 @@ public class OCCMobileExample1 extends Activity {
             InputStream is = proc.getInputStream();
             InputStreamReader isr = new InputStreamReader(is);
             BufferedReader br = new BufferedReader(isr);
-
-    	 	while ((s = br.readLine()) != null) {
-                 StringBuffer sb = new StringBuffer(s);
-                 result += new String(sb+"\n");
-                 
-         	}
-          
+            while ((s = br.readLine()) != null) {
+                StringBuffer sb = new StringBuffer(s);
+                result += new String(sb+"\n");
+            }
     	    br.close();
     	    isr.close();
     	    is.close();
