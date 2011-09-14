@@ -7,7 +7,7 @@
 /**
  * 	@author Goran Lukic
  * 	@since  04.09.2011
- *  @see    http://github.com/goranl
+ *   
  */
 
 JNIEXPORT jdouble JNICALL Java_occ_mobile_example2_OCC_result
