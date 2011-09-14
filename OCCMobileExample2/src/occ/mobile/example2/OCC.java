@@ -24,7 +24,7 @@ public class OCC {
         System.loadLibrary("occ_native");
         
    } catch (UnsatisfiedLinkError use) {
-   	    Log.e("OCC", "WARNING:WARNING:WARNING: Could not load librarys");
+        Log.e("OCC", "WARNING:WARNING:WARNING: Could not load librarys");
      }
   }
 
