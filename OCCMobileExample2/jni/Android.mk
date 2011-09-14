@@ -68,6 +68,6 @@ LOCAL_PRELINK_MODULE := false
 LOCAL_MODULE := occ_native
 LOCAL_CPPFLAGS += -DHAVE_IOSTREAM -DHAVE_FSTREAM -DHAVE_LIMITS_H -DHAVE_IOMANIP
 LOCAL_SRC_FILES := occ_native.cpp
-LOCAL_CFLAGS := -I/home/arch/OCCANDROID/OCCMobileExample2/jni -I/home/arch/OCCANDROID/ros/inc -I/home/arch/OCCANDROID/android-ndk-r5c/platforms/android-5/arch-arm/usr/include -I/home/arch/OCCANDROID/android-ndk-r5c/sources/cxx-stl/stlport/stlport
+LOCAL_CFLAGS := -I$OCCANDROID/Examples/OCCANDROID/OCCMobileExample2/jni -I$OCCANDROID/ros/inc -I$ANDROID_ARM_4/include -I$ANDROID_NDK/sources/cxx-stl/stlport/stlport
 LOCAL_SHARED_LIBRARIES += libTKernel libTKPrim libTKG2d libTKMath libTKBRep libTKGeomBase libTKG3d libTKTopAlgo libTKGeomAlgo
 include $(BUILD_SHARED_LIBRARY)
