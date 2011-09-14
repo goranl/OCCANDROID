@@ -35,27 +35,27 @@ public class OCCMobileExample1 extends Activity {
     
     private String ReadShellOutput() {
           ProcessBuilder shell;
-    	    String result="", s="";  
+    	  String result="", s="";  
      try {	 
     	   /*
     	    *  Make sure helloG exist in /data/local/tmp
     	    * `adb push helloG /data/local/tmp`
     	    */		  
     	    String[] args = { "./data/local/tmp/helloG" };
-    	 	  shell = new ProcessBuilder(args);
+    	 	shell = new ProcessBuilder(args);
       
-    	 	  Process proc = shell.start();
-    	 	  InputStream is = proc.getInputStream();
-    	 	  InputStreamReader isr = new InputStreamReader(is);
-    	 	  BufferedReader br = new BufferedReader(isr);
+    	 	Process proc = shell.start();
+    	 	InputStream is = proc.getInputStream();
+    	 	InputStreamReader isr = new InputStreamReader(is);
+    	 	BufferedReader br = new BufferedReader(isr);
 
-    	 	  while ((s = br.readLine()) != null) {
+    	 	while ((s = br.readLine()) != null) {
     	 		  StringBuffer sb = new StringBuffer(s);
     	 		  result += new String(sb+"\n");
           }
           
     	    br.close();
-        	isr.close();
+    	    isr.close();
     	    is.close();
     	    proc.destroy();
      } 
