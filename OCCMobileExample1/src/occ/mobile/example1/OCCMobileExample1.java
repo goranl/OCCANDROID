@@ -42,17 +42,17 @@ public class OCCMobileExample1 extends Activity {
     	    * `adb push helloG /data/local/tmp`
     	    */		  
     	    String[] args = { "./data/local/tmp/helloG" };
-    	 	shell = new ProcessBuilder(args);
-      
-    	 	Process proc = shell.start();
-    	 	InputStream is = proc.getInputStream();
-    	 	InputStreamReader isr = new InputStreamReader(is);
-    	 	BufferedReader br = new BufferedReader(isr);
+            shell = new ProcessBuilder(args);
+            Process proc = shell.start();
+            InputStream is = proc.getInputStream();
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader br = new BufferedReader(isr);
 
     	 	while ((s = br.readLine()) != null) {
-    	 		  StringBuffer sb = new StringBuffer(s);
-    	 		  result += new String(sb+"\n");
-          }
+                 StringBuffer sb = new StringBuffer(s);
+                 result += new String(sb+"\n");
+                 
+         	}
           
     	    br.close();
     	    isr.close();
