@@ -8,7 +8,6 @@
 /**
  * 	@author Goran Lukic
  * 	@since  04.09.2011
- *  @see    http://github.com/goranl
  */
 
 int main()
