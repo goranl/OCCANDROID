@@ -32,7 +32,7 @@ public class OCCMobileExample2 extends Activity {
         EditText value2 = (EditText) findViewById(R.id.value2);
         
         public void onClick(View v) {
-        	 double v1 =0;
+             double v1 =0;
              double v2 =0;
              double res=0;
              if (value1.length() <=0 ) {
