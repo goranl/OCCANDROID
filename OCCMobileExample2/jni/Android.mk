@@ -63,11 +63,11 @@ LOCAL_MODULE := libirrlicht
 LOCAL_SRC_FILES := libirrlicht.so
 include $(PREBUILT_SHARED_LIBRARY)
 
-include $(CLEAR_VARS)
+include $(CLEAR_VARS) 
 LOCAL_PRELINK_MODULE := false
 LOCAL_MODULE := occ_native
 LOCAL_CPPFLAGS += -DHAVE_IOSTREAM -DHAVE_FSTREAM -DHAVE_LIMITS_H -DHAVE_IOMANIP
 LOCAL_SRC_FILES := occ_native.cpp
-LOCAL_CFLAGS := -I$OCCANDROID/Examples/OCCANDROID/OCCMobileExample2/jni -I$OCCANDROID/ros/inc -I$ANDROID_ARM_4/include -I$ANDROID_NDK/sources/cxx-stl/stlport/stlport
+LOCAL_CFLAGS := -I${HOME}/OCCANDROID/Examples/OCCANDROID/OCCMobileExample2/jni -I${HOME}/OCCANDROID/ros/inc -I${ANDROID_ARM_4}/include -I${ANDROID_NDK}/sources/cxx-stl/stlport/stlport
 LOCAL_SHARED_LIBRARIES += libTKernel libTKPrim libTKG2d libTKMath libTKBRep libTKGeomBase libTKG3d libTKTopAlgo libTKGeomAlgo
 include $(BUILD_SHARED_LIBRARY)
