@@ -56,8 +56,8 @@ public class OCCMobileExample1 extends Activity {
     	    is.close();
     	    proc.destroy();
      } 
-     catch(IOException ex) {	 
-    	 	ex.printStackTrace();
+     catch(IOException ex) {
+            ex.printStackTrace();
      }
      	return result;
   }

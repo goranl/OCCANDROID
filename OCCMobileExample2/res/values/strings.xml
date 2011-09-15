@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello OCC!</string>
-    <string name="app_name">OCC-Mobile-Example2</string>
+    <string name="Hello">Hello OCC!</string>
+    <string name="app_name">OCC-EXAMPLE2</string>
     <string name="error">Enter number!</string>
 </resources>
