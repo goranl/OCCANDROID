@@ -43,6 +43,7 @@ $ update-alternatives --config javah (* 2 /usr/lib/jvm/java-6-sun/bin/javah 63 m
 
 6. Download allready pre-compiled shared librarys for Android
    [ https://github.com/goranl/OCCANDROID/archives/master ]
+   https://github.com/blog/1302-goodbye-uploads
 
 7.  cd $HOME
 8.  mkdir -p $HOME/OCCANDROID/Examples
