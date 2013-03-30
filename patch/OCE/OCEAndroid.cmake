@@ -18,7 +18,7 @@ SET(CMAKE_SYSTEM_NAME Linux)
 #   make && sudo make install
 ###
 
-# specify nkd toolchain
+# specify ndk toolchain
 SET( TOOLCHAIN               /android-ndk-r8e/android-toolchain )
 
 SET( CMAKE_FIND_ROOT_PATH    ${TOOLCHAIN} )
