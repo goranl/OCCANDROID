@@ -2,11 +2,6 @@ package occ.mobile.example2;
 
 import android.util.Log;
 
-/**
- * 	@author Goran Lukic
- * 	@since  04.09.2011
- */
-
 public class OCC {
 
   static 
