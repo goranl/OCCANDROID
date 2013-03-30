@@ -1,6 +1,6 @@
 ############################################################################################
 # COMPILE from shell
-# Don't forget to put *.so inside /jni
+# Don't forget to put *.so inside jni/
 # check LOCAL_CFLAGS inside Android.mk
 ############################################################################################
 :~/OCCANDROID/Examples/OCCANDROID/OCCMobileExample2/src/occ/mobile/example2$  javac OCC.java
@@ -15,14 +15,9 @@
 
 ############################################################################################
 # COMPILE with Eclipse
-# Don't forget to put *.so inside /jni
+# Don't forget to put *.so inside jni/
 # check LOCAL_CFLAGS inside Android.mk
 ############################################################################################
-# If you have any problems, configure Eclipse to automatically 
-# rebuild your project when editing native code.
-#
-# ... and set Target to "Manual" under Project->Properties->Run/Debug Settings
-# Launch configurations for "..."
 --------------------------------------------------------------------------------------------
 Click on Run or Ctrl+F11 :)
 --------------------------------------------------------------------------------------------
