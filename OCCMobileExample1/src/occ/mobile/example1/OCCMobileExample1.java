@@ -12,10 +12,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-/**
- * 	@author Goran Lukic
- * 	@since  04.09.2011
- */
 
 public class OCCMobileExample1 extends Activity {	
     @Override
