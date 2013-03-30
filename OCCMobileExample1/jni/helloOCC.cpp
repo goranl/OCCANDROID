@@ -5,10 +5,6 @@
 #include <GProp_GProps.hxx>
 #include <BRepGProp.hxx>
 
-/**
- * 	@author Goran Lukic
- * 	@since  04.09.2011
- */
 
 int main()
 {
