@@ -1,0 +1,20 @@
+--- ros/src/OSD/OSD_FileNode.cxx	2012-11-12 11:41:16.000000000 +0100
++++ ros_patch/src/OSD/OSD_FileNode.cxx	2013-03-28 18:05:40.000000000 +0100
+@@ -385,7 +385,7 @@ Quantity_Date  OSD_FileNode::CreationMom
+  TCollection_AsciiString aBuffer;
+  myPath.SystemName ( aBuffer );
+  if (!stat ( aBuffer.ToCString(), &buffer )) {
+-   decode = localtime(&buffer.st_ctime);
++   decode = localtime((const time_t*)&buffer.st_ctime); 
+    result.SetValues ( 
+ 		     decode->tm_mon+1, decode->tm_mday, decode->tm_year+1900,
+ 		     decode->tm_hour, decode->tm_min, decode->tm_sec , 0,0);
+@@ -413,7 +413,7 @@ Quantity_Date  OSD_FileNode::AccessMomen
+  TCollection_AsciiString aBuffer;
+  myPath.SystemName ( aBuffer );
+  if (!stat ( aBuffer.ToCString(), &buffer )) {
+-   decode = localtime(&buffer.st_atime);
++   decode = localtime((const time_t*)&buffer.st_ctime); 
+    result.SetValues (
+ 		     decode->tm_mon+1, decode->tm_mday, decode->tm_year+1900,
+ 		     decode->tm_hour, decode->tm_min, decode->tm_sec, 0,0 );

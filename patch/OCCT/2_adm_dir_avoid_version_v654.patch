@@ -1,0 +1,465 @@
+diff -uprN ros/adm/make/FWOSPlugin/Makefile.am ros_patch/adm/make/FWOSPlugin/Makefile.am
+--- ros/adm/make/FWOSPlugin/Makefile.am	2012-11-12 11:53:13.000000000 +0100
++++ ros_patch/adm/make/FWOSPlugin/Makefile.am	2013-03-27 15:30:01.000000000 +0100
+@@ -18,6 +18,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libFWOSPlugin.la
+ 
++libFWOSPlugin_la_LDFLAGS = -avoid-version
++
+ libFWOSPlugin_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKernel/libTKernel.la \
+ ../TKCDF/libTKCDF.la
+diff -uprN ros/adm/make/Makefile.am ros_patch/adm/make/Makefile.am
+--- ros/adm/make/Makefile.am	2012-11-12 11:53:13.000000000 +0100
++++ ros_patch/adm/make/Makefile.am	2013-03-27 15:46:07.000000000 +0100
+@@ -32,7 +32,7 @@ else
+   Visualization_DIRS = 
+ endif
+ 
+-ApplicationFramework_PKGS = TKCDF PTKernel TKLCAF FWOSPlugin TKPShape TKCAF TKBinL TKXmlL TKPLCAF TKTObj TKShapeSchema TKBin TKXml TKPCAF TKBinTObj TKXmlTObj TKStdLSchema TKStdSchema
++ApplicationFramework_PKGS = TKCDF PTKernel TKLCAF FWOSPlugin TKPShape TKBinL TKXmlL TKPLCAF TKTObj TKShapeSchema TKStdLSchema
+ 
+ if ENABLE_CAF
+   ApplicationFramework_DIRS = $(ApplicationFramework_PKGS)
+@@ -40,7 +40,7 @@ else
+   ApplicationFramework_DIRS = 
+ endif
+ 
+-DataExchange_PKGS = TKVRML TKXCAF TKSTL TKXSBase TKXCAFSchema TKXmlXCAF TKBinXCAF TKSTEPBase TKIGES TKSTEPAttr TKSTEP209 TKXDEIGES TKSTEP TKXDESTEP
++DataExchange_PKGS = TKSTL TKXSBase TKSTEPBase TKIGES TKSTEPAttr TKSTEP209 TKSTEP
+ 
+ if ENABLE_DXE
+   DataExchange_DIRS = $(DataExchange_PKGS)
+diff -uprN ros/adm/make/PTKernel/Makefile.am ros_patch/adm/make/PTKernel/Makefile.am
+--- ros/adm/make/PTKernel/Makefile.am	2012-11-12 11:53:13.000000000 +0100
++++ ros_patch/adm/make/PTKernel/Makefile.am	2013-03-27 15:21:56.000000000 +0100
+@@ -32,6 +32,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libPTKernel.la
+ 
++libPTKernel_la_LDFLAGS = -avoid-version
++
+ libPTKernel_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKernel/libTKernel.la
+ 
+diff -uprN ros/adm/make/TKAdvTools/Makefile.am ros_patch/adm/make/TKAdvTools/Makefile.am
+--- ros/adm/make/TKAdvTools/Makefile.am	2012-11-12 11:53:13.000000000 +0100
++++ ros_patch/adm/make/TKAdvTools/Makefile.am	2013-03-27 15:11:53.000000000 +0100
+@@ -28,6 +28,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKAdvTools.la
+ 
++libTKAdvTools_la_LDFLAGS = -avoid-version
++
+ libTKAdvTools_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKernel/libTKernel.la
+ 
+diff -uprN ros/adm/make/TKBinL/Makefile.am ros_patch/adm/make/TKBinL/Makefile.am
+--- ros/adm/make/TKBinL/Makefile.am	2012-11-12 11:53:11.000000000 +0100
++++ ros_patch/adm/make/TKBinL/Makefile.am	2013-03-27 15:24:12.000000000 +0100
+@@ -28,6 +28,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKBinL.la
+ 
++libTKBinL_la_LDFLAGS = -avoid-version
++
+ libTKBinL_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKCDF/libTKCDF.la \
+ ../TKernel/libTKernel.la \
+diff -uprN ros/adm/make/TKBO/Makefile.am ros_patch/adm/make/TKBO/Makefile.am
+--- ros/adm/make/TKBO/Makefile.am	2012-11-12 11:53:10.000000000 +0100
++++ ros_patch/adm/make/TKBO/Makefile.am	2013-03-27 15:16:45.000000000 +0100
+@@ -28,6 +28,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKBO.la
+ 
++libTKBO_la_LDFLAGS = -avoid-version
++
+ libTKBO_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKBRep/libTKBRep.la \
+ ../TKTopAlgo/libTKTopAlgo.la \
+diff -uprN ros/adm/make/TKBool/Makefile.am ros_patch/adm/make/TKBool/Makefile.am
+--- ros/adm/make/TKBool/Makefile.am	2012-11-12 11:53:11.000000000 +0100
++++ ros_patch/adm/make/TKBool/Makefile.am	2013-03-27 15:17:18.000000000 +0100
+@@ -30,6 +30,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKBool.la
+ 
++libTKBool_la_LDFLAGS = -avoid-version
++
+ libTKBool_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKBRep/libTKBRep.la \
+ ../TKTopAlgo/libTKTopAlgo.la \
+diff -uprN ros/adm/make/TKBRep/Makefile.am ros_patch/adm/make/TKBRep/Makefile.am
+--- ros/adm/make/TKBRep/Makefile.am	2012-11-12 11:53:11.000000000 +0100
++++ ros_patch/adm/make/TKBRep/Makefile.am	2013-03-27 15:14:15.000000000 +0100
+@@ -30,6 +30,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKBRep.la
+ 
++libTKBRep_la_LDFLAGS = -avoid-version
++
+ libTKBRep_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKMath/libTKMath.la \
+ ../TKernel/libTKernel.la \
+diff -uprN ros/adm/make/TKCDF/Makefile.am ros_patch/adm/make/TKCDF/Makefile.am
+--- ros/adm/make/TKCDF/Makefile.am	2012-11-12 11:53:10.000000000 +0100
++++ ros_patch/adm/make/TKCDF/Makefile.am	2013-03-27 15:23:01.000000000 +0100
+@@ -26,6 +26,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKCDF.la
+ 
++libTKCDF_la_LDFLAGS = -avoid-version
++
+ libTKCDF_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKernel/libTKernel.la
+ 
+diff -uprN ros/adm/make/TKernel/Makefile.am ros_patch/adm/make/TKernel/Makefile.am
+--- ros/adm/make/TKernel/Makefile.am	2012-11-12 11:53:12.000000000 +0100
++++ ros_patch/adm/make/TKernel/Makefile.am	2013-03-27 15:10:51.000000000 +0100
+@@ -54,6 +54,8 @@ INCLUDES = $(CSF_OPT_INCLUDES) $(CSF_SOC
+ 
+ lib_LTLIBRARIES=libTKernel.la
+ 
++libTKernel_la_LDFLAGS = -avoid-version
++
+ libTKernel_la_LIBADD = $(CSF_OPT_LIBS) \
+ $(CSF_SOCKETLibs_LIB) $(CSF_FPELibs_LIB) $(CSF_ThreadLibs_LIB) $(CSF_advapi32_LIB) $(CSF_gdi32_LIB) $(CSF_user32_LIB) $(CSF_kernel32_LIB) $(CSF_TBB_LIB) $(CSF_MotifLibs_LIB) 
+ 
+diff -uprN ros/adm/make/TKFeat/Makefile.am ros_patch/adm/make/TKFeat/Makefile.am
+--- ros/adm/make/TKFeat/Makefile.am	2012-11-12 11:53:11.000000000 +0100
++++ ros_patch/adm/make/TKFeat/Makefile.am	2013-03-27 15:19:28.000000000 +0100
+@@ -20,6 +20,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKFeat.la
+ 
++libTKFeat_la_LDFLAGS = -avoid-version
++
+ libTKFeat_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKBRep/libTKBRep.la \
+ ../TKTopAlgo/libTKTopAlgo.la \
+diff -uprN ros/adm/make/TKFillet/Makefile.am ros_patch/adm/make/TKFillet/Makefile.am
+--- ros/adm/make/TKFillet/Makefile.am	2012-11-12 11:53:13.000000000 +0100
++++ ros_patch/adm/make/TKFillet/Makefile.am	2013-03-27 15:18:33.000000000 +0100
+@@ -34,6 +34,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKFillet.la
+ 
++libTKFillet_la_LDFLAGS = -avoid-version
++
+ libTKFillet_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKBRep/libTKBRep.la \
+ ../TKernel/libTKernel.la \
+diff -uprN ros/adm/make/TKG2d/Makefile.am ros_patch/adm/make/TKG2d/Makefile.am
+--- ros/adm/make/TKG2d/Makefile.am	2012-11-12 11:53:10.000000000 +0100
++++ ros_patch/adm/make/TKG2d/Makefile.am	2013-03-27 15:12:39.000000000 +0100
+@@ -30,6 +30,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKG2d.la
+ 
++libTKG2d_la_LDFLAGS = -avoid-version
++
+ libTKG2d_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKernel/libTKernel.la \
+ ../TKMath/libTKMath.la
+diff -uprN ros/adm/make/TKG3d/Makefile.am ros_patch/adm/make/TKG3d/Makefile.am
+--- ros/adm/make/TKG3d/Makefile.am	2012-11-12 11:53:10.000000000 +0100
++++ ros_patch/adm/make/TKG3d/Makefile.am	2013-03-27 15:13:08.000000000 +0100
+@@ -32,6 +32,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKG3d.la
+ 
++libTKG3d_la_LDFLAGS = -avoid-version
++
+ libTKG3d_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKMath/libTKMath.la \
+ ../TKernel/libTKernel.la \
+diff -uprN ros/adm/make/TKGeomAlgo/Makefile.am ros_patch/adm/make/TKGeomAlgo/Makefile.am
+--- ros/adm/make/TKGeomAlgo/Makefile.am	2012-11-12 11:53:12.000000000 +0100
++++ ros_patch/adm/make/TKGeomAlgo/Makefile.am	2013-03-27 15:15:09.000000000 +0100
+@@ -86,6 +86,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKGeomAlgo.la
+ 
++libTKGeomAlgo_la_LDFLAGS = -avoid-version
++
+ libTKGeomAlgo_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKernel/libTKernel.la \
+ ../TKMath/libTKMath.la \
+diff -uprN ros/adm/make/TKGeomBase/Makefile.am ros_patch/adm/make/TKGeomBase/Makefile.am
+--- ros/adm/make/TKGeomBase/Makefile.am	2012-11-12 11:53:13.000000000 +0100
++++ ros_patch/adm/make/TKGeomBase/Makefile.am	2013-03-27 15:13:43.000000000 +0100
+@@ -60,6 +60,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKGeomBase.la
+ 
++libTKGeomBase_la_LDFLAGS = -avoid-version
++
+ libTKGeomBase_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKernel/libTKernel.la \
+ ../TKMath/libTKMath.la \
+diff -uprN ros/adm/make/TKHLR/Makefile.am ros_patch/adm/make/TKHLR/Makefile.am
+--- ros/adm/make/TKHLR/Makefile.am	2012-11-12 11:53:10.000000000 +0100
++++ ros_patch/adm/make/TKHLR/Makefile.am	2013-03-27 15:17:48.000000000 +0100
+@@ -30,6 +30,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKHLR.la
+ 
++libTKHLR_la_LDFLAGS = -avoid-version
++
+ libTKHLR_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKBRep/libTKBRep.la \
+ ../TKernel/libTKernel.la \
+diff -uprN ros/adm/make/TKIGES/Makefile.am ros_patch/adm/make/TKIGES/Makefile.am
+--- ros/adm/make/TKIGES/Makefile.am	2012-11-12 11:53:11.000000000 +0100
++++ ros_patch/adm/make/TKIGES/Makefile.am	2013-03-27 15:34:51.000000000 +0100
+@@ -52,6 +52,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKIGES.la
+ 
++libTKIGES_la_LDFLAGS = -avoid-version
++
+ libTKIGES_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKBRep/libTKBRep.la \
+ ../TKernel/libTKernel.la \
+diff -uprN ros/adm/make/TKLCAF/Makefile.am ros_patch/adm/make/TKLCAF/Makefile.am
+--- ros/adm/make/TKLCAF/Makefile.am	2012-11-12 11:53:11.000000000 +0100
++++ ros_patch/adm/make/TKLCAF/Makefile.am	2013-03-27 15:23:48.000000000 +0100
+@@ -26,6 +26,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKLCAF.la
+ 
++libTKLCAF_la_LDFLAGS = -avoid-version
++
+ libTKLCAF_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKCDF/libTKCDF.la \
+ ../TKernel/libTKernel.la
+diff -uprN ros/adm/make/TKMath/Makefile.am ros_patch/adm/make/TKMath/Makefile.am
+--- ros/adm/make/TKMath/Makefile.am	2012-11-12 11:53:11.000000000 +0100
++++ ros_patch/adm/make/TKMath/Makefile.am	2013-03-27 15:11:22.000000000 +0100
+@@ -46,6 +46,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKMath.la
+ 
++libTKMath_la_LDFLAGS = -avoid-version
++
+ libTKMath_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKernel/libTKernel.la
+ 
+diff -uprN ros/adm/make/TKMesh/Makefile.am ros_patch/adm/make/TKMesh/Makefile.am
+--- ros/adm/make/TKMesh/Makefile.am	2012-11-12 11:53:11.000000000 +0100
++++ ros_patch/adm/make/TKMesh/Makefile.am	2013-03-27 15:19:58.000000000 +0100
+@@ -20,6 +20,8 @@ INCLUDES = $(CSF_OPT_INCLUDES) $(CSF_TBB
+ 
+ lib_LTLIBRARIES=libTKMesh.la
+ 
++libTKMesh_la_LDFLAGS = -avoid-version
++
+ libTKMesh_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKBRep/libTKBRep.la \
+ ../TKMath/libTKMath.la \
+diff -uprN ros/adm/make/TKOffset/Makefile.am ros_patch/adm/make/TKOffset/Makefile.am
+--- ros/adm/make/TKOffset/Makefile.am	2012-11-12 11:53:14.000000000 +0100
++++ ros_patch/adm/make/TKOffset/Makefile.am	2013-03-27 15:19:00.000000000 +0100
+@@ -24,6 +24,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKOffset.la
+ 
++libTKOffset_la_LDFLAGS = -avoid-version
++
+ libTKOffset_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKFillet/libTKFillet.la \
+ ../TKBRep/libTKBRep.la \
+diff -uprN ros/adm/make/TKPLCAF/Makefile.am ros_patch/adm/make/TKPLCAF/Makefile.am
+--- ros/adm/make/TKPLCAF/Makefile.am	2012-11-12 11:53:12.000000000 +0100
++++ ros_patch/adm/make/TKPLCAF/Makefile.am	2013-03-27 15:25:45.000000000 +0100
+@@ -32,6 +32,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKPLCAF.la
+ 
++libTKPLCAF_la_LDFLAGS = -avoid-version
++
+ libTKPLCAF_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKCDF/libTKCDF.la \
+ ../PTKernel/libPTKernel.la \
+diff -uprN ros/adm/make/TKPrim/Makefile.am ros_patch/adm/make/TKPrim/Makefile.am
+--- ros/adm/make/TKPrim/Makefile.am	2012-11-12 11:53:12.000000000 +0100
++++ ros_patch/adm/make/TKPrim/Makefile.am	2013-03-27 15:16:15.000000000 +0100
+@@ -26,6 +26,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKPrim.la
+ 
++libTKPrim_la_LDFLAGS = -avoid-version
++
+ libTKPrim_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKBRep/libTKBRep.la \
+ ../TKernel/libTKernel.la \
+diff -uprN ros/adm/make/TKPShape/Makefile.am ros_patch/adm/make/TKPShape/Makefile.am
+--- ros/adm/make/TKPShape/Makefile.am	2012-11-12 11:53:13.000000000 +0100
++++ ros_patch/adm/make/TKPShape/Makefile.am	2013-03-27 15:22:30.000000000 +0100
+@@ -46,6 +46,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKPShape.la
+ 
++libTKPShape_la_LDFLAGS = -avoid-version
++
+ libTKPShape_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKMath/libTKMath.la \
+ ../TKernel/libTKernel.la \
+diff -uprN ros/adm/make/TKShapeSchema/Makefile.am ros_patch/adm/make/TKShapeSchema/Makefile.am
+--- ros/adm/make/TKShapeSchema/Makefile.am	2012-11-12 11:53:14.000000000 +0100
++++ ros_patch/adm/make/TKShapeSchema/Makefile.am	2013-03-27 15:25:14.000000000 +0100
+@@ -20,6 +20,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKShapeSchema.la
+ 
++libTKShapeSchema_la_LDFLAGS = -avoid-version
++
+ libTKShapeSchema_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKernel/libTKernel.la \
+ ../TKG2d/libTKG2d.la \
+diff -uprN ros/adm/make/TKShHealing/Makefile.am ros_patch/adm/make/TKShHealing/Makefile.am
+--- ros/adm/make/TKShHealing/Makefile.am	2012-11-12 11:53:13.000000000 +0100
++++ ros_patch/adm/make/TKShHealing/Makefile.am	2013-03-27 15:21:25.000000000 +0100
+@@ -36,6 +36,8 @@ INCLUDES = $(CSF_OPT_INCLUDES) $(CSF_wso
+ 
+ lib_LTLIBRARIES=libTKShHealing.la
+ 
++libTKShHealing_la_LDFLAGS = -avoid-version
++
+ libTKShHealing_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKBRep/libTKBRep.la \
+ ../TKernel/libTKernel.la \
+diff -uprN ros/adm/make/TKStdLSchema/Makefile.am ros_patch/adm/make/TKStdLSchema/Makefile.am
+--- ros/adm/make/TKStdLSchema/Makefile.am	2012-11-12 11:53:14.000000000 +0100
++++ ros_patch/adm/make/TKStdLSchema/Makefile.am	2013-03-27 15:30:47.000000000 +0100
+@@ -20,6 +20,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKStdLSchema.la
+ 
++libTKStdLSchema_la_LDFLAGS = -avoid-version
++
+ libTKStdLSchema_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKCDF/libTKCDF.la \
+ ../PTKernel/libPTKernel.la \
+diff -uprN ros/adm/make/TKSTEP/Makefile.am ros_patch/adm/make/TKSTEP/Makefile.am
+--- ros/adm/make/TKSTEP/Makefile.am	2012-11-12 11:53:12.000000000 +0100
++++ ros_patch/adm/make/TKSTEP/Makefile.am	2013-03-27 15:34:23.000000000 +0100
+@@ -42,6 +42,8 @@ INCLUDES = $(CSF_OPT_INCLUDES) $(CSF_wso
+ 
+ lib_LTLIBRARIES=libTKSTEP.la
+ 
++libTKSTEP_la_LDFLAGS = -avoid-version
++
+ libTKSTEP_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKernel/libTKernel.la \
+ ../TKSTEPAttr/libTKSTEPAttr.la \
+diff -uprN ros/adm/make/TKSTEP209/Makefile.am ros_patch/adm/make/TKSTEP209/Makefile.am
+--- ros/adm/make/TKSTEP209/Makefile.am	2012-11-12 11:53:13.000000000 +0100
++++ ros_patch/adm/make/TKSTEP209/Makefile.am	2013-03-27 15:33:56.000000000 +0100
+@@ -24,6 +24,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKSTEP209.la
+ 
++libTKSTEP209_la_LDFLAGS = -avoid-version
++
+ libTKSTEP209_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKernel/libTKernel.la \
+ ../TKXSBase/libTKXSBase.la \
+diff -uprN ros/adm/make/TKSTEPAttr/Makefile.am ros_patch/adm/make/TKSTEPAttr/Makefile.am
+--- ros/adm/make/TKSTEPAttr/Makefile.am	2012-11-12 11:53:13.000000000 +0100
++++ ros_patch/adm/make/TKSTEPAttr/Makefile.am	2013-03-27 15:33:18.000000000 +0100
+@@ -24,6 +24,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKSTEPAttr.la
+ 
++libTKSTEPAttr_la_LDFLAGS = -avoid-version
++
+ libTKSTEPAttr_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKernel/libTKernel.la \
+ ../TKXSBase/libTKXSBase.la \
+diff -uprN ros/adm/make/TKSTEPBase/Makefile.am ros_patch/adm/make/TKSTEPBase/Makefile.am
+--- ros/adm/make/TKSTEPBase/Makefile.am	2012-11-12 11:53:13.000000000 +0100
++++ ros_patch/adm/make/TKSTEPBase/Makefile.am	2013-03-27 15:32:49.000000000 +0100
+@@ -32,6 +32,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKSTEPBase.la
+ 
++libTKSTEPBase_la_LDFLAGS = -avoid-version
++
+ libTKSTEPBase_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKernel/libTKernel.la \
+ ../TKXSBase/libTKXSBase.la \
+diff -uprN ros/adm/make/TKSTL/Makefile.am ros_patch/adm/make/TKSTL/Makefile.am
+--- ros/adm/make/TKSTL/Makefile.am	2012-11-12 11:53:10.000000000 +0100
++++ ros_patch/adm/make/TKSTL/Makefile.am	2013-03-27 15:39:21.000000000 +0100
+@@ -24,6 +24,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKSTL.la
+ 
++libTKSTL_la_LDFLAGS = -avoid-version
++
+ libTKSTL_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKernel/libTKernel.la \
+ ../TKMath/libTKMath.la \
+diff -uprN ros/adm/make/TKTObj/Makefile.am ros_patch/adm/make/TKTObj/Makefile.am
+--- ros/adm/make/TKTObj/Makefile.am	2012-11-12 11:53:12.000000000 +0100
++++ ros_patch/adm/make/TKTObj/Makefile.am	2013-03-27 15:40:08.000000000 +0100
+@@ -18,6 +18,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKTObj.la
+ 
++libTKTObj_la_LDFLAGS = -avoid-version
++
+ libTKTObj_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKCDF/libTKCDF.la \
+ ../TKernel/libTKernel.la \
+diff -uprN ros/adm/make/TKTopAlgo/Makefile.am ros_patch/adm/make/TKTopAlgo/Makefile.am
+--- ros/adm/make/TKTopAlgo/Makefile.am	2012-11-12 11:53:12.000000000 +0100
++++ ros_patch/adm/make/TKTopAlgo/Makefile.am	2013-03-27 15:15:45.000000000 +0100
+@@ -48,6 +48,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKTopAlgo.la
+ 
++libTKTopAlgo_la_LDFLAGS = -avoid-version
++
+ libTKTopAlgo_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKMath/libTKMath.la \
+ ../TKernel/libTKernel.la \
+diff -uprN ros/adm/make/TKXMesh/Makefile.am ros_patch/adm/make/TKXMesh/Makefile.am
+--- ros/adm/make/TKXMesh/Makefile.am	2012-11-12 11:53:12.000000000 +0100
++++ ros_patch/adm/make/TKXMesh/Makefile.am	2013-03-27 15:20:39.000000000 +0100
+@@ -18,6 +18,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKXMesh.la
+ 
++libTKXMesh_la_LDFLAGS = -avoid-version
++
+ libTKXMesh_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKBRep/libTKBRep.la \
+ ../TKMath/libTKMath.la \
+diff -uprN ros/adm/make/TKXmlL/Makefile.am ros_patch/adm/make/TKXmlL/Makefile.am
+--- ros/adm/make/TKXmlL/Makefile.am	2012-11-12 11:53:12.000000000 +0100
++++ ros_patch/adm/make/TKXmlL/Makefile.am	2013-03-27 15:24:43.000000000 +0100
+@@ -28,6 +28,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKXmlL.la
+ 
++libTKXmlL_la_LDFLAGS = -avoid-version
++
+ libTKXmlL_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKCDF/libTKCDF.la \
+ ../TKernel/libTKernel.la \
+diff -uprN ros/adm/make/TKXSBase/Makefile.am ros_patch/adm/make/TKXSBase/Makefile.am
+--- ros/adm/make/TKXSBase/Makefile.am	2012-11-12 11:53:14.000000000 +0100
++++ ros_patch/adm/make/TKXSBase/Makefile.am	2013-03-27 15:32:11.000000000 +0100
+@@ -48,6 +48,8 @@ INCLUDES = $(CSF_OPT_INCLUDES)  \
+ 
+ lib_LTLIBRARIES=libTKXSBase.la
+ 
++libTKXSBase_la_LDFLAGS = -avoid-version
++
+ libTKXSBase_la_LIBADD = $(CSF_OPT_LIBS) \
+ ../TKBRep/libTKBRep.la \
+ ../TKernel/libTKernel.la \

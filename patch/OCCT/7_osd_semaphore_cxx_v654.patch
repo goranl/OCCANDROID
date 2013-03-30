@@ -1,0 +1,179 @@
+--- ros/src/OSD/OSD_Semaphore.cxx	2012-11-12 11:41:16.000000000 +0100
++++ ros_patch/src/OSD/OSD_Semaphore.cxx	2013-03-28 19:23:57.000000000 +0100
+@@ -58,14 +58,14 @@ const OSD_WhoAmI Iam = OSD_WSemaphore;
+ /* union semun is defined by including <sys/sem.h> */
+ #else
+ /* according to X/OPEN we have to define it ourselves */
+-union semun {
+-  int val;                    /* value for SETVAL */
+-  struct semid_ds *buf;       /* buffer for IPC_STAT, IPC_SET */
+-  unsigned short int *array;  /* array for GETALL, SETALL */
++//union semun {
++//  int val;                    /* value for SETVAL */
++//  struct semid_ds *buf;       /* buffer for IPC_STAT, IPC_SET */
++//  unsigned short int *array;  /* array for GETALL, SETALL */
+ # ifdef SEMUN_BUF_DEFINED     /* union semun contains four members not three */
+-  struct seminfo *__buf;      /* buffer for IPC_INFO */
++//  struct seminfo *__buf;      /* buffer for IPC_INFO */
+ # endif
+-};
++//};
+ #endif
+ 
+ 
+@@ -75,13 +75,15 @@ extern "C" int osd_getkey(char *);
+ 
+ #define CLUSTER_NUMBER 4 
+ 
+-static struct sembuf event_flag ;
++//static struct sembuf event_flag ;
+ 	 
+ OSD_Semaphore::OSD_Semaphore(){
+  mySemId = -1;
++ /*
+  event_flag.sem_num = 0;
+  event_flag.sem_op  = 0;
+  event_flag.sem_flg = 0;
++ */
+ }
+ 
+ // ===============================================================
+@@ -93,9 +95,10 @@ OSD_Semaphore::OSD_Semaphore(const TColl
+ 
+ {
+  mySemId = -1;
+- event_flag.sem_num = 0;
++ /*event_flag.sem_num = 0;
+  event_flag.sem_op  = 0;
+  event_flag.sem_flg = 0;
++ */
+ 
+  if (!Name.IsAscii())
+   Standard_ConstructionError::Raise("OSD_Semaphore::OSD_Semaphore : name");
+@@ -116,7 +119,7 @@ void OSD_Semaphore::Build()
+ // Set semaphore into system =====================================
+ // ===============================================================
+ {
+- mySemId = semget((key_t) myKey,CLUSTER_NUMBER,0750 + IPC_CREAT) ;
++ mySemId = -1;//semget((key_t) myKey,CLUSTER_NUMBER,0750 + IPC_CREAT) ;
+  
+  if (mySemId == -1) myError.SetValue(errno, Iam, "OSD_Semaphore::Build");
+ }
+@@ -139,7 +142,7 @@ void OSD_Semaphore::Open(const TCollecti
+  pStr=(Standard_PCharacter)Name.ToCString();
+  myKey = osd_getkey(pStr);
+ 
+- mySemId = semget((key_t) myKey,0,0) ;
++ mySemId = -1;//semget((key_t) myKey,0,0) ;
+ 
+  if (mySemId == -1) myError.SetValue(errno, Iam, "OSD_Semaphore::Open");
+ }
+@@ -161,11 +164,12 @@ void OSD_Semaphore::Lock()
+  if (mySemId == -1)
+    Standard_ProgramError::Raise("OSD_Semaphore::Lock : semaphore not created");
+ 
++ /*
+  event_flag.sem_num = event ;
+  event_flag.sem_op  = -1 ;
+  event_flag.sem_flg = SEM_UNDO;
+-
+- status = semop((int)mySemId ,&event_flag,1) ;
++ */
++ status = -1;//semop((int)mySemId ,&event_flag,1) ;
+ 
+  if (status == -1) myError.SetValue(errno, Iam, "Lock semaphore");
+ }
+@@ -184,12 +188,12 @@ int status ;
+ 
+  if (mySemId == -1)
+    Standard_ProgramError::Raise("OSD_Semaphore::Free : semaphore not created");
+-
++ /*
+  event_flag.sem_num = 0 ;
+  event_flag.sem_op  = 1 ;
+  event_flag.sem_flg = IPC_NOWAIT ;
+-
+- status=semop((int)mySemId ,&event_flag,1) ;
++ */
++ status=-1;//semop((int)mySemId ,&event_flag,1) ;
+ 
+  if (status == -1) myError.SetValue(errno, Iam, "OSD_Semaphore::Free");
+ }
+@@ -205,16 +209,16 @@ void OSD_Semaphore::Restore()
+ {
+  int status;
+  int event=0;
+- union semun zero_value;
++ //union semun zero_value;
+ 
+  if (myError.Failed()) myError.Perror();
+ 
+  if (mySemId == -1)
+    Standard_ProgramError::Raise("OSD_Semaphore::Restore : semaphore not created");
+ 
+- zero_value.val = 0;
++ //zero_value.val = 0;
+ 
+- status = semctl((int)mySemId ,event,SETVAL,zero_value);
++ status = -1;//semctl((int)mySemId ,event,SETVAL,zero_value);
+ 
+  if (status == -1) myError.SetValue(errno, Iam, "OSD_Semaphore::Restore semaphore");
+ }
+@@ -231,16 +235,16 @@ void OSD_Semaphore::SetCounter(const Sta
+ {
+  int status;
+  int event=0;
+- union semun param_value;
++ //union semun param_value;
+ 
+  if (myError.Failed()) myError.Perror();
+ 
+  if (mySemId == -1)
+    Standard_ProgramError::Raise("OSD_Semaphore::SetCounter : semaphore not created");
+ 
+- param_value.val = (int)Value;
++ //param_value.val = (int)Value;
+ 
+- status = semctl((int)mySemId ,event,SETVAL,param_value);
++ status = -1;//semctl((int)mySemId ,event,SETVAL,param_value);
+  
+  if (status == -1) myError.SetValue(errno, Iam, "OSD_Semaphore::SetCounter semaphore");
+ }
+@@ -256,15 +260,15 @@ Standard_Integer OSD_Semaphore::GetCount
+  int status;
+  int event=0;
+  int Value; 
+- union semun param_value;
++ //union semun param_value;
+ 
+  if (myError.Failed()) myError.Perror();
+ 
+  if (mySemId == -1)
+    Standard_ProgramError::Raise("OSD_Semaphore::GetCounter : semaphore not created");
+ 
+- param_value.array = (ushort *)&Value; 
+- status = semctl((int)mySemId ,event,GETVAL,param_value);
++ //param_value.array = (ushort *)&Value; 
++ status = -1;//semctl((int)mySemId ,event,GETVAL,param_value);
+   
+  if (status == -1)
+    myError.SetValue(errno, Iam, "OSD_Semaphore::GetCounter semaphore"); 
+@@ -280,15 +284,15 @@ void OSD_Semaphore::Delete()
+ 
+ {
+  int status;
+- union semun param_value;
++ //union semun param_value;
+ 
+  if (myError.Failed()) myError.Perror();
+ 
+  if (mySemId == -1)
+    Standard_ProgramError::Raise("OSD_Semaphore::Delete : semaphore not created");
+ 
+-  param_value.array = NULL;
+-  status = semctl((int)mySemId ,IPC_RMID, 0, param_value);
++  //param_value.array = NULL;
++  status = -1;//semctl((int)mySemId ,IPC_RMID, 0, param_value);
+ 
+  if (status == -1) 
+    myError.SetValue(errno, Iam, "OSD_Semaphore::Delete semaphore");

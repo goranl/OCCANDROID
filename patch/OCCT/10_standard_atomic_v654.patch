@@ -1,0 +1,20 @@
+--- ros/inc/Standard_Atomic.hxx	2012-11-12 11:21:16.000000000 +0100
++++ ros_patch/inc/Standard_Atomic.hxx	2013-03-28 11:23:25.000000000 +0100
+@@ -58,7 +58,7 @@ static int Standard_Atomic_Increment (vo
+ #elif (defined(_WIN32) || defined(__WIN32__))
+   // WinAPI function or MSVC intrinsic
+   return _InterlockedIncrement(reinterpret_cast<long volatile*>(theValue));
+-#elif defined(LIN)
++#elif defined(NLIN)
+   // use x86 / x86_64 inline assembly (compatibility with alien compilers / old GCC)
+   int anIncResult;
+   __asm__ __volatile__ (
+@@ -93,7 +93,7 @@ static int Standard_Atomic_Decrement (vo
+ #elif (defined(_WIN32) || defined(__WIN32__))
+   // WinAPI function or MSVC intrinsic
+   return _InterlockedDecrement(reinterpret_cast<long volatile*>(theValue));
+-#elif defined(LIN)
++#elif defined(NLIN)
+   // use x86 / x86_64 inline assembly (compatibility with alien compilers / old GCC)
+   int aDecResult;
+   __asm__ __volatile__ (

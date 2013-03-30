@@ -1,0 +1,138 @@
+#!/bin/bash
+#################################################################
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+#################################################################
+# Please define variables (required)
+ndk=/path/to/android-ndk-r8e
+prefix=/path/to/libs
+#################################################################
+
+toolchain=/android-toolchain
+
+exportvar() 
+{
+ if [ ! -e $ndk$toolchain/sysroot/usr/include/jni.h ]; then 
+   echo "Abort. No toolchain found."
+   exit 0 
+ fi 
+ echo "Running export..."
+ export SYSROOT="$ndk$toolchain/sysroot"
+ export PATH=$PATH:$ndk$toolchain/bin
+ export CXX="$ndk$toolchain/bin/arm-linux-androideabi-g++ --sysroot=$SYSROOT"
+ export CC="$ndk$toolchain/bin/arm-linux-androideabi-gcc --sysroot=$SYSROOT"
+ export NM="$ndk$toolchain/bin/arm-linux-androideabi-nm --sysroot=$SYSROOT"
+ export CPP="$ndk$toolchain/bin/arm-linux-androideabi-cpp --sysroot=$SYSROOT"
+ export AS="$ndk$toolchain/bin/arm-linux-androideabi-as --sysroot=$SYSROOT"
+ export OBJCOPY="$ndk$toolchain/bin/arm-linux-androideabi-objcopy --sysroot=$SYSROOT"
+ export OBJDUMP="$ndk$toolchain/bin/arm-linux-androideabi-objdump --sysroot=$SYSROOT"
+ export STRIP="$ndk$toolchain/bin/arm-linux-androideabi-strip --sysroot=$SYSROOT"
+ export RANLIB="$ndk$toolchain/bin/arm-linux-androideabi-ranlib --sysroot=$SYSROOT"
+ export CCLD="$ndk$toolchain/bin/arm-linux-androideabi-gcc --sysroot=$SYSROOT"
+ export AR="$ndk$toolchain/bin/arm-linux-androideabi-ar --sysroot=$SYSROOT"
+ export LD="$ndk$toolchain/bin/arm-linux-androideabi-ld"
+}
+
+configure() 
+{
+ exportvar
+ 
+ echo "Running configure..."
+ ./configure --without-tk --without-tcl --disable-vis --disable-draw --enable-data --enable-algo --enable-dxe --enable-caf --disable-static --enable-debug=no --enable-production=yes --enable-shared=yes --build=i686-pc-linux-gnu --target=arm-linux-androideabi --host=arm-linux-androideabi --prefix=$prefix
+             
+ echo "Done."
+} 
+
+build() 
+{
+ exportvar
+ 
+ echo "Running make..."
+ core=$(echo "`nproc`" *2 | bc -l)
+ make -j $core
+ 
+ echo "Running make install..."
+ make install
+ 
+ echo "Done."
+ exit 0
+}
+
+strip() 
+{ 
+ echo "Running strip..."
+ export STRIP="$ndk$toolchain/bin/arm-linux-androideabi-strip";
+ for f in $prefix/lib/*.so; do "$STRIP --strip-unneeded $f; done
+ echo "Done." 
+} 
+
+test() 
+{ 
+ echo "Running test..."
+ if [ ! -e $prefix/lib/libTKernel.so ]; then 
+  echo "Nothing to be done."
+  exit 0 
+ fi
+ 
+ cat <<_ACEOF > test.cpp 
+ #include <BRepPrimAPI_MakeTorus.hxx>
+ #include <iostream>
+ int main() {
+   BRepPrimAPI_MakeTorus Torus(4.0, 2.0);
+   return 0;
+ }
+_ACEOF
+
+export CXX="$ndk$toolchain/bin/arm-linux-androideabi-g++"
+$CXX test.cpp -DHAVE_IOSTREAM -DHAVE_FSTREAM -DHAVE_LIMITS_H -DHAVE_IOMANIP \
+-I$prefix/inc/ -L$prefix/lib/ -Wl,--start-group -lTKPrim -lTKMath -lTKernel \
+-lTKG2d -lTKBRep -lTKGeomBase -lTKG3d -lTKTopAlgo -lTKGeomAlgo -Wl,--end-group
+ 
+echo "Done."
+}  
+
+help() 
+{
+echo "Download android-ndk-rXX: (Linux XX-bit (x86))
+http://developer.android.com/tools/sdk/ndk/index.html
+
+Create toolchain:
+/android-ndk-rXX/build/tools/make-standalone-toolchain.sh 
+--platform=android-X
+--install-dir=\$ndk/android-toolchain
+--toolchain=arm-linux-androideabi-4.7 
+
+Execute patches:
+patch -p1 < ../1_...v654.patch
+                 ...
+
+Run scripts:
+./build_configure
+./runAndroid configure
+./runAndroid build 
+
+For additional information, please read: \$ndk/docs"
+}
+
+case "$1" in
+    configure)
+  configure
+  ;;
+    build)
+  build
+  ;;
+    clean)
+  clean
+  ;;
+    test)
+  test
+  ;;
+    help)
+  help
+  ;;
+ 
+ *) 
+ echo   "Usage: $0 {configure|build|test|strip|help}" >&2
+ exit 1 
+esac 
+
+exit 0

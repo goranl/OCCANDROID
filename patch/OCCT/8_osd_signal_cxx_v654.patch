@@ -1,0 +1,13 @@
+--- ros/src/OSD/OSD_signal.cxx	2012-11-12 11:41:18.000000000 +0100
++++ ros_patch/src/OSD/OSD_signal.cxx	2013-03-28 18:15:06.000000000 +0100
+@@ -58,7 +58,9 @@ static pthread_t getOCCThread () {
+ 
+ #ifdef linux
+ #include <fenv.h>
+-#include <fpu_control.h>
++#ifdef HAVE_FPU_CONTROL_H
++ #include <fpu_control.h>
++#endif
+ static Standard_Boolean fFltExceptions = Standard_False;
+ #endif
+ 

@@ -1,0 +1,11 @@
+--- ros/src/STEPConstruct/STEPConstruct_AP203Context.cxx	2012-11-12 11:48:53.000000000 +0100
++++ ros_patch/src/STEPConstruct/STEPConstruct_AP203Context.cxx	2013-03-27 18:15:05.000000000 +0100
+@@ -188,7 +188,7 @@ Handle(StepBasic_PersonAndOrganization)
+ #ifndef WNT
+     if ( usr ) {
+       struct passwd *pwd = getpwnam ( usr );
+-      if ( pwd ) usr = pwd->pw_gecos;
++      if ( pwd ) usr = pwd->pw_name;
+     }
+     else usr = "Unknown";
+ #endif

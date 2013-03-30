@@ -1,0 +1,85 @@
+--- ros/src/OSD/OSD_Csharedmemory.c	2012-11-12 11:41:16.000000000 +0100
++++ ros_patch/src/OSD/OSD_Csharedmemory.c	2013-03-28 19:22:25.000000000 +0100
+@@ -23,7 +23,9 @@
+ #include <stdio.h>
+ #include <sys/types.h>
+ #include <sys/ipc.h>
+-#include <sys/shm.h>
++#if defined(HAVE_SYS_SHM_H)
++ #include <sys/shm.h>
++#endif
+ 
+ #if defined(HAVE_CONFIG_H)
+ #include "config.h"
+@@ -58,16 +60,16 @@ int create_sharedmemory(int **section, c
+ 
+ ===============================================================*/
+ {
+-
++/*
+         key_t key;
+         key = (key_t) osd_getkey (section_name);
+ 
+ 	*section = NULL ;
+ 	status = shmget(	key,section_size,0750 + IPC_CREAT) ;
+ 
+-	if( status < 0 ) return 0 ;  /* shmget failed */
++	if( status < 0 ) return 0 ;  // shmget failed 
+ 	else {
+-	      *section = (int*)shmat(status,NULL,0) ; /* shmat failed */
++	      *section = (int*)shmat(status,NULL,0) ; // shmat failed 
+ 
+ 	      if( *section == (int*)-1 ) {
+ 		     *section = (int*)malloc(section_size) ;
+@@ -75,6 +77,8 @@ int create_sharedmemory(int **section, c
+ 		}
+ 	}
+ 	return status;
++*/
++	return 0;
+ }
+ 
+ 
+@@ -89,22 +93,24 @@ int open_sharedmemory(int **section, cha
+         otherwise successfull 
+ ================================================================*/
+ {
+-
++/*
+         key_t key;
+         key = (key_t) osd_getkey (section_name);
+ 
+ 	*section = NULL ;
+-        /* Test if shared memory identified by "k" exists ? */
++        // Test if shared memory identified by "k" exists ? 
+ 	status = shmget( key,0,0) ;
+ 
+-	if( status < 0 ) return 0;  /* shmget failed */
++	if( status < 0 ) return 0;  // shmget failed 
+ 
+-        /* Try to attach the shared memory to the current process */
++        // Try to attach the shared memory to the current process 
+         *section = (int*)shmat(status,NULL,0) ;
+ 
+-	if( *section == (int*)-1 ) return 0; /* shmat failed */
++	if( *section == (int*)-1 ) return 0; // shmat failed 
+ 
+ 	return status ;
++*/
++	return 0;
+ }
+ 
+ 
+@@ -114,9 +120,11 @@ int remove_sharedmemory(int *shmid, char
+ 	CLOSE a mapping memory section
+ 
+ ========================================================*/
+-{
++{ /*
+ 	status = shmctl(*shmid ,IPC_RMID,NULL) ;
+         if (status < 0) return 0;
+                    else return 1;
++ */
++  return 0;
+ }
+ #endif

@@ -1,0 +1,53 @@
+--- ros/configure.ac	2012-11-12 11:53:15.000000000 +0100
++++ ros_patch/configure.ac	2013-03-29 16:57:09.000000000 +0100
+@@ -37,7 +37,7 @@ dnl Checks for header files.
+ AC_HEADER_STDC
+ AC_LANG([C])
+ AC_MSG_CHECKING([ for C header files ])
+-AC_CHECK_HEADERS(dlfcn.h dl.h ieeefp.h time.h sys/time.h pwd.h)
++AC_CHECK_HEADERS(dlfcn.h dl.h ieeefp.h time.h sys/time.h pwd.h fpu_control.h)
+ AC_CHECK_HEADERS(sys/statvfs.h sys/vfs.h sys/param.h osfcn.h netdb.h)
+ AC_CHECK_HEADERS(sys/ioctl.h net/if.h sys/systeminfo.h sys/utsname.h)
+ AC_CHECK_HEADERS(sysent.h unistd.h sys/unistd.h sys/socket.h)
+@@ -63,8 +63,8 @@ AC_CHECK_HEADERS(sys/filio.h sys/mman.h
+ # Posix threads library is required
+ #-----------------------------------------------------------------------------
+ AC_CHECK_HEADER([pthread.h],[],[AC_MSG_ERROR([Posix threads required])])
+-AC_CHECK_LIB([pthread],[pthread_create],[],[AC_MSG_ERROR([Posix threads required])])
+-CSF_ThreadLibs_LIB=-lpthread
++AC_CHECK_LIB([c],[pthread_create],[],[AC_MSG_ERROR([Posix threads required])])
++CSF_ThreadLibs_LIB=-lc
+ AC_SUBST(CSF_ThreadLibs_LIB)
+ 
+ #-----------------------------------------------------------------------------
+@@ -146,9 +146,9 @@ CXXFLAGS="$CXXFLAGS -DCSFDB -DOCC_CONVER
+ CFLAGS="$CFLAGS -DCSFDB -DOCC_CONVERT_SIGNALS"
+ 
+ case $platform in
+-	Linux*) CXXFLAGS="$CXXFLAGS -DLIN -DLININTEL -D_GNU_SOURCE=1"
+-		CFLAGS="$CFLAGS -DLIN -DLININTEL -fexceptions"
+-		LDFLAGS="$LDFLAGS -lstdc++ -lrt";;
++	Linux*) CXXFLAGS="$CXXFLAGS -DLIN -D_GNU_SOURCE=1"
++		CFLAGS="$CFLAGS -DLIN"
++		LDFLAGS="$LDFLAGS -lstdc++ -lc";;
+ 	SunOS*) CXXFLAGS="$CXXFLAGS -Usun -DSOLARIS -instances=static"
+ 		CFLAGS="$CFLAGS -Usun -DSOLARIS -instances=static"
+ 		LDFLAGS="$LDFLAGS -instances=static"
+@@ -985,7 +985,7 @@ else
+   DISABLE_VIS_REASON="(Disabled)"
+ fi
+ if test "xyes" = "x$ENABLE_CAF"; then
+-  if test "xyes" = "x$ENABLE_CAF" -a "xyes" != "x$ENABLE_VIS"; then
++  if test "xyes" = "x$ENABLE_CAF" -a "no" == "x$ENABLE_VIS"; then
+     AC_MSG_NOTICE([Disabling ApplicationFramework: not building Visualization component])
+     DISABLE_CAF_REASON="(Visualization component disabled)"
+     ENABLE_CAF=no
+@@ -1014,7 +1014,7 @@ if test "xyes" = "x$ENABLE_DXE"; then
+     DISABLE_DXE_REASON="(ApplicationFramework component disabled)"
+     ENABLE_DXE=no
+   fi
+-  if test "xyes" = "x$ENABLE_DXE" -a "xyes" != "x$ENABLE_VIS"; then
++  if test "xyes" = "x$ENABLE_DXE" -a "no" == "x$ENABLE_VIS"; then
+     AC_MSG_NOTICE([Disabling DataExchange: not building Visualization component])
+     DISABLE_DXE_REASON="(Visualization component disabled)"
+     ENABLE_DXE=no
