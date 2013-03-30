@@ -18,13 +18,7 @@
 ##################################################################################################################
 
 You'll need to have the standard developer's tools on Linux.
-(including Java Development Kit)
-
-$ update-alternatives --config java  (* 3 /usr/lib/jvm/java-6-sun/jre/bin/java 63 manual mode)
-$ update-alternatives --config javac (* 3 /usr/lib/jvm/java-6-sun/bin/javac 63 manual mode)
-$ update-alternatives --config javah (* 2 /usr/lib/jvm/java-6-sun/bin/javah 63 manual mode)
-
-   $HOME/OCCANDROID - "root" directory.
+(including Java SE Development Kit)
 
 1. Download/Install Eclipse with C/C++ support 
    [ http://www.eclipse.org/downloads ]
