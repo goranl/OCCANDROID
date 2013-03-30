@@ -41,10 +41,14 @@ $ update-alternatives --config javah (* 2 /usr/lib/jvm/java-6-sun/bin/javah 63 m
 5. Download/Install Apache Ant
    [ http://ant.apache.org ]
 
-6. Download allready pre-compiled shared librarys for Android
+6. ***deprecated****
+   Download allready pre-compiled shared librarys for Android
    [ https://github.com/goranl/OCCANDROID/archives/master ]
-   https://github.com/blog/1302-goodbye-uploads
-
+   [ https://github.com/blog/1302-goodbye-uploads ]
+   *****************
+   Please compile the latest OCCT libs by yourself.
+   https://github.com/goranl/OCCANDROID/tree/master/patch/OCCT
+  
 7.  cd $HOME
 8.  mkdir -p $HOME/OCCANDROID/Examples
 9.  cd $HOME/OCCANDROID/Examples
