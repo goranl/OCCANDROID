@@ -42,11 +42,10 @@ $ update-alternatives --config javah (* 2 /usr/lib/jvm/java-6-sun/bin/javah 63 m
    [ http://ant.apache.org ]
 
 6. ***deprecated****
-   Download allready pre-compiled shared librarys for Android
    [ https://github.com/goranl/OCCANDROID/archives/master ]
    [ https://github.com/blog/1302-goodbye-uploads ]
    *****************
-   Please compile the latest OCCT libs by yourself.
+   Please compile the latest OCCT version by yourself.
    https://github.com/goranl/OCCANDROID/tree/master/patch/OCCT
   
 7.  cd $HOME
