@@ -1,9 +1,8 @@
 ###########################################################################
 # COMPILE with ant
 ###########################################################################
-# make sure your real device is is connected with your  
+# make sure your real device is connected with your  
 # machine via USB and "USB debugging"
-# and "Allow mock locations" is on.
 # Don't use both (mobile phone and emulator) at the same time...!  
 --------------------------------------------------------------------------
 $ adb devices
@@ -14,11 +13,6 @@ $ ant install
 ############################################################################
 # COMPILE with Eclipse
 ############################################################################
-# If you have any problems, configure Eclipse to automatically 
-# rebuild your project when editing native code.
-#
-# ... and set Target to "Manual" under Project->Properties->Run/Debug Settings
-# Launch configurations for "..."
 ----------------------------------------------------------------------------
 Click on Run or Ctrl+F11 :)
 ----------------------------------------------------------------------------
