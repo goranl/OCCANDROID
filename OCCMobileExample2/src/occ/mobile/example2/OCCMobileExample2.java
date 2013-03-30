@@ -8,10 +8,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 
-/**
- * 	@author Goran Lukic
- * 	@since  04.09.2011
- */
 
 public class OCCMobileExample2 extends Activity {
 	
