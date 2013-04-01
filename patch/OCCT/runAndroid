@@ -61,7 +61,7 @@ strip()
 { 
  echo "Running strip..."
  export STRIP="$ndk$toolchain/bin/arm-linux-androideabi-strip";
- for f in $prefix/lib/*.so; do "$STRIP --strip-unneeded $f; done
+ for f in $prefix/lib/*.so; do $STRIP --strip-unneeded $f; done
  echo "Done." 
 } 
 
@@ -120,8 +120,8 @@ case "$1" in
     build)
   build
   ;;
-    clean)
-  clean
+    strip)
+  strip
   ;;
     test)
   test

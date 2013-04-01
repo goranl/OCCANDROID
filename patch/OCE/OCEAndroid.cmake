@@ -11,15 +11,13 @@ SET(CMAKE_SYSTEM_NAME Linux)
 #   --toolchain=arm-linux-androideabi-4.7 
 #  
 #   git clone git://github.com/tpaviot/oce.git
-#   cd oce;
-#   mkdir build; 
-#   cd build;
+#   cd oce; mkdir build; cd build;
 #   cmake -DCMAKE_TOOLCHAIN_FILE=../OCEAndroid.cmake ..
 #   make && sudo make install
 ###
 
 # specify ndk toolchain
-SET( TOOLCHAIN               /android-ndk-r8e/android-toolchain )
+SET( TOOLCHAIN               /path/to/android-ndk-r8e/android-toolchain )
 
 SET( CMAKE_FIND_ROOT_PATH    ${TOOLCHAIN} )
 SET( CMAKE_C_COMPILER       "${TOOLCHAIN}/bin/arm-linux-androideabi-gcc"     )
