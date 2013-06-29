@@ -12,7 +12,6 @@ SET(CMAKE_SYSTEM_NAME Linux)
 #   cd oce; mkdir build; cd build;
 #   cmake -DCMAKE_TOOLCHAIN_FILE=../OCEAndroid.cmake ..
 #   make && sudo make install
-#
 
 # specify ndk toolchain
 SET( TOOLCHAIN               /path/to/android-ndk-r8e/android-toolchain )
