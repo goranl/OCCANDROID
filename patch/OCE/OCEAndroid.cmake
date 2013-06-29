@@ -1,6 +1,5 @@
 SET(CMAKE_SYSTEM_NAME Linux)
 
-### 
 # Download android-ndk-rXX: (Linux XX-bit (x86))
 #     http://developer.android.com/tools/sdk/ndk/index.html
 # Create toolchain:
@@ -8,12 +7,12 @@ SET(CMAKE_SYSTEM_NAME Linux)
 #   --platform=android-X
 #   --install-dir=$ndk/android-toolchain
 #   --toolchain=arm-linux-androideabi-4.7 
-#  
+# Download/Install OCE: 
 #   git clone git://github.com/tpaviot/oce.git
 #   cd oce; mkdir build; cd build;
 #   cmake -DCMAKE_TOOLCHAIN_FILE=../OCEAndroid.cmake ..
 #   make && sudo make install
-###
+#
 
 # specify ndk toolchain
 SET( TOOLCHAIN               /path/to/android-ndk-r8e/android-toolchain )
@@ -41,4 +40,3 @@ SET( OCE_BUILD_SHARED_LIB    ON  )
 SET( OCE_VISUALISATION       OFF )
 SET( OCE_NO_LIBRARY_VERSION  ON  )
 SET( OCE_DISABLE_X11         ON  )
-
