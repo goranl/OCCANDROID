@@ -3,7 +3,6 @@ SET(CMAKE_SYSTEM_NAME Linux)
 ### 
 # Download android-ndk-rXX: (Linux XX-bit (x86))
 #     http://developer.android.com/tools/sdk/ndk/index.html
-#
 # Create toolchain:
 #     /android-ndk-rXX/build/tools/make-standalone-toolchain.sh 
 #   --platform=android-X
