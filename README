@@ -1,5 +1,5 @@
-#################################################################################################################
-#  How to run OpenCASCADE on Android 
+
+#  How to use OpenCASCADE Technology on Android 
 # 
 #  Open CASCADE Technology is a software development platform freely available in open source. 
 #  It includes components for 3D surface and solid modeling, visualization, 
@@ -14,8 +14,8 @@
 #  For more information on the Company please visit www.opencascade.com
 #  
 #  ***This effort is in no way connected to OpenCASCADE Company*** 
-#
-##################################################################################################################
+
+
 
 You'll need to have the standard developer's tools on Linux.
 (including Java SE Development Kit)
@@ -39,7 +39,7 @@ You'll need to have the standard developer's tools on Linux.
    [ https://github.com/goranl/OCCANDROID/archives/master ]
    [ https://github.com/blog/1302-goodbye-uploads ]
    *****************
-   Please compile the latest OCCT version by yourself.
+   Please compile the latest OCCT version
    https://github.com/goranl/OCCANDROID/tree/master/patch/OCCT
   
 7.  cd $HOME
